@@ -1,0 +1,11 @@
+/* Estilo para el contenedor con desplazamiento */
+.scrollable-container {
+    height: 70vh; /* Ajusta según sea necesario para evitar que se desborde la pantalla */
+    overflow-y: auto;
+}
+
+/* Estilo para la lista con desplazamiento */
+.scrollable-list {
+    max-height: calc(100% - 50px); /* Ajusta según sea necesario para evitar que se desborde la pantalla */
+    overflow-y: auto;
+}

@@ -1,0 +1,5 @@
+<app-titulo>
+    <abbr> Autos</abbr>
+</app-titulo>
+<app-mi-auto *ngFor="let a of autos" [auto]="a"></app-mi-auto>
+<button (click)="agregar()">+</button>

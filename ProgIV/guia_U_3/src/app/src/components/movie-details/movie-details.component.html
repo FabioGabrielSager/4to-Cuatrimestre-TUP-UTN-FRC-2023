@@ -1,0 +1,26 @@
+<div class="container-fluid mt-3">
+  <div class="vh-100 d-flex align-items-center">
+    <div class="row g-0">
+      <div class="col-md-3">
+        <img src="{{movie?.Poster}}" class="rounded float-start" alt="poster">
+      </div>
+      <div class="col-md-9">
+        <h4 class="text-body-emphasis">{{movie?.Title}} ({{movie?.Year}})</h4>
+        <p class="text-secondary">{{movie?.Rated}}</p>
+        <p class="text-secondary">{{movie?.Genre}}</p>
+        <p class="text-black">{{movie?.Plot}}</p>
+        <p class="text-black">Runtime: {{movie?.Runtime}}</p>
+        <p class="text-black">Director: {{movie?.Director}}</p>
+        <p class="text-black">Writer: {{movie?.Writer}}</p>
+        <p class="text-black">Actors: {{movie?.Actors}}</p>
+        <p class="text-black">Languaje: {{movie?.Language}}</p>
+        <h5>Ratings:</h5>
+        <div class="row">
+          <div class="col" *ngFor="let r of movie?.Ratings">
+            <span>{{r.Source}}: {{r.Value}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

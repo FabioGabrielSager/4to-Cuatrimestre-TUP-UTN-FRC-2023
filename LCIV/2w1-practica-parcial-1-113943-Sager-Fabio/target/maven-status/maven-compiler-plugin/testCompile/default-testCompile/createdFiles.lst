@@ -1,0 +1,9 @@
+ar/edu/utn/frc/tup/lciii/SmokeTest.class
+ar/edu/utn/frc/tup/lciii/repositories/ClientRepositoryTest.class
+ar/edu/utn/frc/tup/lciii/controllers/LocationControllerTest.class
+ar/edu/utn/frc/tup/lciii/ApplicationTests.class
+ar/edu/utn/frc/tup/lciii/services/WeatherServiceTest.class
+ar/edu/utn/frc/tup/lciii/controllers/PingControllerTest.class
+ar/edu/utn/frc/tup/lciii/configs/SpringDocConfigTest.class
+ar/edu/utn/frc/tup/lciii/controllers/WeatherControllerTest.class
+ar/edu/utn/frc/tup/lciii/clients/WeatherClientTest.class

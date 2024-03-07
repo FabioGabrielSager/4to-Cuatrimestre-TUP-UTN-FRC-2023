@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 appTitle [title]="'Listado Mascotas'" [fontSize]="'20px'"></h1>
+  <div class="row">
+    <ng-container *ngFor="let m of mascotas">
+      <div class="col-3">
+        <div class="card ms-2" *ngIf="m.mostrar">
+          <div class="card-body">
+            <h5 class="card-title">Nombre: {{ m.nombre }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Raza: {{ m.raza }}</h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Sexo: {{ m.sexo }}</h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Año nacimiento: {{ m.anioNacimiento }}</h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Tutor: {{ m.tutor }}</h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Edad: {{ m.anioNacimiento | age}}</h6>
+            <button class="btn btn-primary" (click)="m.incrementarEdad()">Incrementar edad</button>
+            <label for="mostrar">Mostrar mascota</label>
+            <input type="checkbox" name="mostar" id="mostrar" (input)="m.mostrarMascota()">
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

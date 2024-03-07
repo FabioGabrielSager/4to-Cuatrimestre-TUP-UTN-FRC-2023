@@ -1,0 +1,32 @@
+<div class="container vh-100 d-flex align-items-center">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Origen</th>
+            <th scope="col">Destino</th>
+            <th scope="col">Fecha y Hora</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Paradas</th>
+            <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let t of trips; let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{t.originName}}</td>
+            <td>{{t.destinationName}}</td>
+            <td>{{t.departureDate}} {{t.departureTime}}</td>
+            <td>${{t.price}}</td>
+            <td>
+                <ul>
+                  <ng-container *ngFor="let s of t.stops; let j = index">
+                    <li>{{j+1}} {{s.location}} - Hora: {{s.time}}hs - Tiempo de parada: {{s.stopTime}}mins</li>
+                  </ng-container>
+                </ul>
+            </td>
+            <td><button class="btn btn-primary" [routerLink]="['/trips/edit/', t.id]">Editar</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

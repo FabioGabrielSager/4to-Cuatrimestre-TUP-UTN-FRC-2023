@@ -1,0 +1,17 @@
+<h3>Listado de inscripciones</h3>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre Alumno</th>
+        <th scope="col">Materia</th>
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let i of inscripciones">
+            <tr>
+                <td>{{i.nombreAlumno}}</td>
+                <td>{{i.materia}}</td>
+              </tr>
+        </ng-container>
+    </tbody>
+  </table>

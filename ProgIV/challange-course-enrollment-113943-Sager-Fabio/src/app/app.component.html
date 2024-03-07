@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="../assets/logo.jpg" (click)="displayAndHideComponents($event)" id="homeNavBtn" width="30" height="24" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" id="crearMatNavBtn" 
+          (click)="displayAndHideComponents($event)">Crear Materia</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="inscribirNavBtn" 
+          (click)="displayAndHideComponents($event)">Inscribir Alumno</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="listarInsNavBtn" 
+          (click)="displayAndHideComponents($event)">Listar Inscripciones</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+      <co-crear-materia *ngIf="displayMateriaForm"></co-crear-materia>
+      <co-inscribir-alumno *ngIf="displayInscribirForm"></co-inscribir-alumno>
+      <co-listar-inscripciones *ngIf="displayListadoInscripciones"></co-listar-inscripciones>
+  </div>
+</div>

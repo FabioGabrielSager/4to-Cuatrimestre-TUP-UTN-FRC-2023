@@ -1,0 +1,18 @@
+<div class="row vh-100 align-items-center justify-content-center" *ngIf="!mostrar">
+    <app-barra-carga [numberOfPets]="mascotas.length" (onLoadFinished)="mostrar=$event"></app-barra-carga>
+</div>
+
+<div *ngIf="mostrar">
+    <div id="title" class="container-fluid d-flex justify-content-center align-items-center">
+        <app-titulo [title]="'Veterinaria pets'" [fontSize]="'30px'" [color]="'white'"></app-titulo>
+    </div>
+    <div class="container mt-3 d-flex justify-content-center align-items-center">
+        <div class="row p-3">
+            <div class="col">
+                <app-mascota [mascotas]="mascotas"></app-mascota>
+            </div>
+        </div>
+    </div>
+    <app-foto></app-foto>
+    <app-padre-rango></app-padre-rango>
+</div>

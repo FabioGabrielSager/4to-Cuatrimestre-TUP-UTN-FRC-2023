@@ -1,0 +1,96 @@
+{
+  "invoices": [
+    {
+      "id": "59e05f26-5830-48c9-825b-4704b9cb5969",
+      "createdDate": "2023-10-20",
+      "clientName": "Panificadora del Valle S.A.",
+      "tpe": "A",
+      "details": [
+        {
+          "id": "bc1b18f7-fccf-4770-9139-e5b3ee6cec75",
+          "productName": "Harina por bolsa de 50kg",
+          "amount": 2,
+          "price": 15000
+        },
+        {
+          "id": "3eedf8ab-b36d-4ffc-80ee-b3b78426383f",
+          "productName": "Fideos secasos la puta madre",
+          "amount": "4",
+          "price": "124"
+        },
+        {
+          "id": "51526822-6889-4248-9918-2c13cd5179d3",
+          "productName": "Fideos secasos la puta madre 2",
+          "amount": "5",
+          "price": "120"
+        },
+        {
+          "id": "b6cc7ce5-151a-4db5-a9ff-e8977d3cb232",
+          "productName": "Fideos secasos la puta madre 2",
+          "amount": "5",
+          "price": "124"
+        },
+        {
+          "id": "6fbf6d93-2fec-4ade-8efe-6e5daafb8e01",
+          "productName": "Fideos secasos la puta madre 2",
+          "amount": "6",
+          "price": "1245"
+        }
+      ]
+    },
+    {
+      "id": "90d3ee46-667e-453e-89a9-7281454b9ea6",
+      "createdDate": "2023-10-22",
+      "clientName": "Juan de los Palotes",
+      "tpe": "A",
+      "details": [
+        {
+          "id": "627bb923-e30e-4d7b-a486-b5d943ee2c72",
+          "productName": "Café Molido por Caja 'La Virginia' (Pack 50 bolsas)",
+          "amount": 5,
+          "price": 10000
+        }
+      ]
+    },
+    {
+      "id": "279b9a6c-659f-4109-a627-9b8ce30eeccc",
+      "createdDate": "2023-12-03",
+      "clientName": "Fabio Sager",
+      "tpe": "A",
+      "details": [
+        {
+          "id": "58b49c85-989e-45c6-9dce-670010da2c67",
+          "productName": "Fideos secasos la puta madre",
+          "amount": "4",
+          "price": "12415"
+        },
+        {
+          "id": "ff55e9a7-8060-4443-876c-8460e4fd7be9",
+          "productName": "Fideos secasos la puta madre 2",
+          "amount": "4",
+          "price": "1215"
+        },
+        {
+          "id": "1a7e31e8-9a51-4738-97da-1e0f906539be",
+          "productName": "Arbejas Arbejas",
+          "amount": "5",
+          "price": "555"
+        }
+      ]
+    },
+    {
+      "id": "f22e2e77-14da-4bf1-998d-40b2fb7a839b",
+      "createdDate": "2023-12-04",
+      "clientName": "Fabio Sager",
+      "tpe": "A",
+      "details": [
+        {
+          "id": "45a7aadb-e1ab-4481-82e1-ec5b62fc084a",
+          "productName": "asdfasdfasdf",
+          "amount": "5",
+          "price": "200"
+        }
+      ]
+    }
+  ]
+}

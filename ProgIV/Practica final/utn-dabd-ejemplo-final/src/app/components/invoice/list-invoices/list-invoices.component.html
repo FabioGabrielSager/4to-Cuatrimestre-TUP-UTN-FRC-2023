@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    <div ngbAccordion [closeOthers]="true">
+        <ng-container *ngFor="let iv of invoices; let i = index">
+            <div ngbAccordionItem (click)="selectedItem = i">
+                <h2 ngbAccordionHeader>
+                    <button ngbAccordionButton>Cliente: {{iv.clientName}} - Fecha: {{iv.createdDate}} - Tipo: {{iv.tpe}}</button>
+                </h2>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            <table class="table" *ngIf="iv.details && iv.details.length > 0">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <ng-container *ngFor="let d of invoices[i].details">
+                                    <tr>
+                                        <td>{{d.productName}}</td>
+                                        <td>{{d.amount}}</td>
+                                        <td>{{d.price}}</td>
+                                    </tr>
+                                </ng-container>
+                                </tbody>
+                            </table>
+                            <div *ngIf="!iv.details || iv.details.length === 0">
+                                No hay detalles disponibles.
+                            </div>
+                            <button class="btn btn-primary"
+                                    [routerLink]="['/invoice/addDetail']"
+                                    [queryParams]="{invoiceId: invoices[i].id}"
+                            >Agregar detalle</button>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

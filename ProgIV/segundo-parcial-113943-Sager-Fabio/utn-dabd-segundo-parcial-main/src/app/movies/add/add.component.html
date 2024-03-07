@@ -1,0 +1,138 @@
+<div class="container mt-5">
+  <h2>Agregar Película</h2>
+  <hr />
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <label for="titleInmput" class="col-sm-2 col-form-label">Título</label>
+        <input
+                formControlName="title"
+                type="text"
+                class="form-control"
+                id="titleInmput"
+                placeholder="Título"
+                [class.is-invalid]="form.controls['title'].invalid
+                 && (form.controls['title'].touched
+                 || form.controls['title'].dirty)"
+        />
+        <div class="invalid-feedback" *ngIf="form.controls['title'].getError('required')
+                 && (form.controls['title'].touched
+                 || form.controls['title'].dirty)">El titulo es requerido
+        </div>
+        <div class="invalid-feedback" *ngIf="form.controls['title'].getError('minlength')
+                 && (form.controls['title'].touched
+                 || form.controls['title'].dirty)">El titulo no puede tener menos de 5 caracteres
+        </div>
+        <div class="invalid-feedback" *ngIf="form.controls['title'].getError('istaked')
+                 && (form.controls['title'].touched
+                 || form.controls['title'].dirty)">Ese titulo ya se encuentra registrado
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <label for="hrefInmput" class="col-sm-2 col-form-label">Link</label>
+        <input
+                formControlName="href"
+                type="text"
+                class="form-control"
+                id="hrefInmput"
+                [class.is-invalid]="form.controls['href'].invalid
+                 && (form.controls['href'].touched
+                 || form.controls['href'].dirty)"
+        />
+        <div class="invalid-feedback" *ngIf="form.controls['href'].getError('isInvalid')
+                 && (form.controls['title'].touched
+                 || form.controls['title'].dirty)">El link debe estar en mayusculas y no puede contener espacios,
+          las palabras deben estar separadas por guiones bajos.
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="yearInput" class="col-sm-2 col-form-label">Año</label>
+        <input type="number" formControlName="year" class="form-control" id="yearInput"
+               [class.is-invalid]="form.controls['year'].invalid
+                 && (form.controls['year'].touched
+                 || form.controls['year'].dirty)"/>
+        <div class="invalid-feedback" *ngIf="form.controls['year'].getError('min')
+                 && (form.controls['year'].touched
+                 || form.controls['year'].dirty)">El año no puede ser inferior a 1900
+        </div>
+        <div class="invalid-feedback" *ngIf="form.controls['year'].getError('max')
+                 && (form.controls['year'].touched
+                 || form.controls['year'].dirty)">El año no puede ser superior a 2023
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <label for="extractInput" class="col-sm-2 col-form-label">Extracto</label>
+        <textarea formControlName="extract" class="form-control" id="extractInput" rows="3"
+                  [class.is-invalid]="form.controls['extract'].invalid
+                 && (form.controls['extract'].touched
+                 || form.controls['extract'].dirty)"></textarea>
+        <div class="invalid-feedback" *ngIf="form.controls['extract'].getError('minlength')
+                 && (form.controls['extract'].touched
+                 || form.controls['extract'].dirty)">El extracto no puede tener menos de 15 caracteres
+        </div>
+        <div class="invalid-feedback" *ngIf="form.controls['extract'].getError('required')
+                 && (form.controls['extract'].touched
+                 || form.controls['extract'].dirty)">El extracto es requerido
+        </div>
+      </div>
+    </div>
+    <h4>Actores</h4>
+    <div class="form-group row">
+      <ng-container formArrayName="cast">
+        <ng-container [formGroupName]="i" *ngFor="let control of castFormArray.controls; let i = index">
+          <div class="mt-3">
+            <h4>Nro: {{i+1}}</h4>
+            <div class="col-sm-12">
+              <label for="firstNameInput" class="col-sm-2 col-form-label">Nombre</label>
+              <input type="text" formControlName="name" class="form-control" id="firstNameInput"
+                     [class.is-invalid]="castFormArray.controls[i].get('name')?.invalid
+                 && (castFormArray.controls[i].get('name')?.touched
+                 || castFormArray.controls[i].get('name')?.dirty)"/>
+              <div class="invalid-feedback" *ngIf="castFormArray.controls[i].get('name')?.getError('required')
+                 && (castFormArray.controls[i].get('name')?.touched
+                 || castFormArray.controls[i].get('name')?.dirty)">El nombre es requerido
+              </div>
+              <div class="invalid-feedback" *ngIf="castFormArray.controls[i].get('name')?.getError('minlength')
+                 && (castFormArray.controls[i].get('name')?.touched
+                 || castFormArray.controls[i].get('name')?.dirty)">El nombre no puede tener menos de 5 caracteres
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <label for="lastNameInput" class="col-sm-2 col-form-label">Apellido</label>
+              <input type="text" formControlName="lastName" class="form-control" id="lastNameInput"
+                     [class.is-invalid]="castFormArray.controls[i].get('lastName')?.invalid
+                 && (castFormArray.controls[i].get('lastName')?.touched
+                 || castFormArray.controls[i].get('lastName')?.dirty)"/>
+              <div class="invalid-feedback"
+                   *ngIf="castFormArray.controls[i].get('lastName')?.getError('required')
+                 && (castFormArray.controls[i].get('lastName')?.touched
+                 || castFormArray.controls[i].get('lastName')?.dirty)">El apellido es requerido
+              </div>
+              <div class="invalid-feedback"
+                   *ngIf="castFormArray.controls[i].get('lastName')?.getError('maxlength')
+                 && (castFormArray.controls[i].get('lastName')?.touched
+                 || castFormArray.controls[i].get('lastName')?.dirty)">El apellido no puede tener mas de 20 caracteres
+              </div>
+            </div>
+            <div class="col-sm-2 mt-3">
+              <button type="button" (click)="removeActorForm(i)" class="btn btn-danger"><i class="bi-trash"></i></button>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <div class="col-12 mt-3">
+        <button type="button" (click)="addActorForm()" class="btn btn-info"><i class="bi-plus"></i></button>
+      </div>
+    </div>
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary">Registrar</button>
+    </div>
+  </form>
+</div>

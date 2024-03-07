@@ -1,0 +1,29 @@
+<h3>Inscribir alumno</h3>
+<form #fomr="ngForm" (ngSubmit)="inscribirAlumno(fomr)">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre alumno</label>
+      <input type="text" class="form-control" id="nombre" name="nombreAlumno" 
+      [(ngModel)]="inscripcion.nombreAlumno" #inputNombreAlumno="ngModel" required maxlength="200">
+      <div style="color: red;" *ngIf="inputNombreAlumno.getError('required') && inputNombreAlumno.touched">
+        El nombre es requerido.
+      </div>
+      <div style="color: red;" *ngIf="inputNombreAlumno.getError('maxlength') && inputNombreAlumno.touched">
+        El nombre no pude tener más de 200 caracteres.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="materia" class="form-label">Materia</label>
+      <select class="form-select" id="materia" name="selectMateria" [(ngModel)]="inscripcion.materia" 
+      #selectMateria="ngModel" required>
+        <option [ngValue]="''" disabled [selected]="!inscripcion.materia">
+          Desplegue este menu para seleccionar</option>
+        <ng-container *ngFor="let m of materias">
+          <option [ngValue]="m.nombre">{{m.nombre}}</option>
+        </ng-container>
+      </select>
+      <div style="color: red;" *ngIf="selectMateria.getError('required') && selectMateria.touched">
+        La materia es requerido.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear</button>
+</form>

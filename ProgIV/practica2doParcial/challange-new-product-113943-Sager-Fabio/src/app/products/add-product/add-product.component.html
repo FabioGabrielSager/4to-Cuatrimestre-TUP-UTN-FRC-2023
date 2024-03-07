@@ -1,0 +1,106 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="productNameInput">Nombre</label>
+      <input
+        formControlName="name"
+        type="text"
+        class="form-control"
+        id="productNameInput"
+        placeholder="Nombre del Producto"
+        [class.is-invalid]="form.controls['name'].invalid && (form.controls['name'].touched ||
+        form.controls['name'].dirty)"
+      />
+    </div>
+    <div class="form-group">
+      <label for="productDescriptionInput">Descripción</label>
+      <textarea
+        formControlName="description"
+        class="form-control"
+        id="productDescriptionInput"
+        rows="3"
+        [class.is-invalid]="form.controls['description'].invalid && (form.controls['description'].touched ||
+        form.controls['description'].dirty)"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="productPriceInput">Precio</label>
+      <input type="number" formControlName="price" class="form-control" id="productPriceInput"
+             [class.is-invalid]="form.controls['price'].invalid && (form.controls['price'].touched ||
+       form.controls['price'].dirty)"/>
+    </div>
+
+    <div class="form-group">
+      <label>Tipo de Producto</label>
+      <div class="form-check">
+        <input
+          formControlName="type"
+          class="form-check-input"
+          type="radio"
+          name="type"
+          id="productTypeInputProducto"
+          value="product"
+          [class.is-invalid]="form.controls['type'].invalid && (form.controls['type'].touched ||
+          form.controls['type'].dirty)"/>
+        <label class="form-check-label" for="productTypeInputProducto">Producto</label>
+      </div>
+      <div class="form-check ">
+        <input
+          formControlName="type"
+          class="form-check-input"
+          type="radio"
+          name="type"
+          id="productTypeInputServicio"
+          value="service"
+          [class.is-invalid]="form.controls['type'].invalid && (form.controls['type'].touched ||
+          form.controls['type'].dirty)"
+        />
+        <label class="form-check-label" for="productTypeInputServicio">Servicio</label>
+      </div>
+    </div>
+
+    <ng-container formArrayName="details">
+      <ng-container [formGroupName]="i" *ngFor="let details of detailsFromArray.controls; let i = index">
+        <div class="form-group" *ngIf="form.get('type')?.value === 'service'">
+          <label for="productTimeFractionInput">Fracción de Tiempo</label>
+          <input type="number" formControlName="timeFraction" class="form-control" id="productTimeFractionInput"
+                 [class.is-invalid]="detailsFromArray.controls[i].get('timeFraction')?.invalid && (
+                 detailsFromArray.controls[i].get('timeFraction')?.touched ||
+                  detailsFromArray.controls[i].get('timeFraction')?.dirty)"
+          />
+        </div>
+        <div *ngIf="form.get('type')?.value === 'product'">
+          <div class="form-group">
+            <label for="productLocationName">Nombre Lugar (Inventario)</label>
+            <input
+              formControlName="location"
+              type="text"
+              class="form-control"
+              id="productLocationName"
+              placeholder="Nombre"
+              [class.is-invalid]="detailsFromArray.controls[i].get('location')?.invalid && (
+                 detailsFromArray.controls[i].get('location')?.touched ||
+                  detailsFromArray.controls[i].get('location')?.dirty)"
+            />
+          </div>
+          <div class="form-group">
+            <label for="productLocationCount">Cantidad de Stock (Inventario)</label>
+            <input formControlName="stock" type="number" class="form-control" id="productLocationCount"
+                   [class.is-invalid]="detailsFromArray.controls[i].get('stock')?.invalid && (
+                 detailsFromArray.controls[i].get('stock')?.touched ||
+                  detailsFromArray.controls[i].get('stock')?.dirty)"
+            />
+          </div>
+          <button type="button" (click)="removeStockControl(i)"
+                  class="btn btn-danger mb-3">Elminar</button>
+        </div>
+      </ng-container>
+    </ng-container>
+    <br>
+    <button type="button" *ngIf="form.get('type')?.value === 'product'" (click)="addStockControlsToDetails()"
+            class="btn btn-primary mb-3">Agregar stock</button>
+    <br>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+</div>
+{{newProduct.name}}

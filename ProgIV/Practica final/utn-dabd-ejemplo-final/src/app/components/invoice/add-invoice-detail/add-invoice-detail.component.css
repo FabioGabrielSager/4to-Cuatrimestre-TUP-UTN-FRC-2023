@@ -1,0 +1,11 @@
+@media (max-width: 467px) {
+    #cancel-btn {
+        margin-top: 16px;
+    }
+}
+
+@media (min-width: 467px) {
+    #cancel-btn {
+        margin-left: 16px;
+    }
+}

@@ -1,0 +1,137 @@
+<div class="container mt-4">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row g-3">
+    <div class="col-6">
+      <label for="nameInput" class="form-label">Nombre</label>
+      <input type="text" formControlName="name" class="form-control" id="nameInput"
+             [class.is-invalid]="(form.controls['name'].touched || form.controls['name'].dirty)
+      && form.controls['name'].invalid">
+      <div class="invalid-feedback" *ngIf="(form.controls['name'].touched || form.controls['name'].dirty)
+      && form.controls['name'].hasError('required')">
+        El nombre es requerido.
+      </div>
+      <div class="invalid-feedback" *ngIf="(form.controls['name'].touched || form.controls['name'].dirty)
+      && form.controls['name'].hasError('maxlength')">
+        El nombre no puede superar los 200 caracteres.
+      </div>
+    </div>
+    <div class="col-6">
+      <label for="codeInput" class="form-label">Código</label>
+      <input type="text" formControlName="code" class="form-control" id="codeInput"
+             [class.is-invalid]="(form.controls['code'].touched || form.controls['code'].dirty)
+      && form.controls['code'].invalid">
+      <div class="invalid-feedback" *ngIf="(form.controls['code'].touched || form.controls['code'].dirty)
+      && form.controls['code'].hasError('required')">
+        El código es requerido.
+      </div>
+      <div class="invalid-feedback" *ngIf="(form.controls['code'].touched || form.controls['code'].dirty)
+      && form.controls['code'].hasError('maxlength')">
+        El código no puede superar los 10 caracteres.
+      </div>
+    </div>
+    <div class="col-12">
+      <label for="descriptionInput" class="form-label">Descripción</label>
+      <textarea type="text" formControlName="description" class="form-control" id="descriptionInput"
+                [class.is-invalid]="(form.controls['description'].touched || form.controls['description'].dirty)
+      && form.controls['description'].invalid"></textarea>
+      <div class="invalid-feedback" *ngIf="(form.controls['description'].touched || form.controls['description'].dirty)
+      && form.controls['description'].hasError('maxlength')">
+        La descripción no puede superar los 1000 caracteres.
+      </div>
+    </div>
+    <div class="col-6">
+      <label for="countrySelect" class="form-label">País</label>
+      <select class="form-select" formControlName="country" id="countrySelect"
+              [class.is-invalid]="(form.controls['country'].touched || form.controls['country'].dirty)
+      && form.controls['country'].invalid">
+        <ng-container *ngFor="let c of countries">
+          <option [value]="c.id">{{c.name}}</option>
+        </ng-container>
+      </select>
+      <div class="invalid-feedback" *ngIf="(form.controls['country'].touched || form.controls['country'].dirty)
+      && form.controls['country'].hasError('required')">
+        El país es requerido.
+      </div>
+    </div>
+    <div class="col-6">
+      <label for="stateSelect" class="form-label">State</label>
+      <select class="form-select" formControlName="state" id="stateSelect"
+              [class.is-invalid]="(form.controls['state'].touched || form.controls['state'].dirty)
+      && form.controls['state'].invalid">
+        <ng-container *ngFor="let s of states">
+          <option [value]="s.id">{{s.name}}</option>
+        </ng-container>
+      </select>
+      <div class="invalid-feedback" *ngIf="(form.controls['country'].touched || form.controls['country'].dirty)
+      && form.controls['country'].hasError('required')">
+        El estado es requerido.
+      </div>
+    </div>
+    <div class="row g-3 mt-3 mb-3">
+      <ng-container formArrayName="details">
+        <h2>Detalles:</h2>
+        <ng-container [formGroupName]="i" *ngFor="let df of detailsArrayForm.controls; let i = index">
+          <h3>Nro: {{i + 1}}</h3>
+          <div class="col-12">
+            <label for="herbTypeInput" class="form-label">Tipo yerba</label>
+            <select class="form-select" formControlName="herbType" id="herbTypeInput">
+              <ng-container *ngFor="let ht of herbsType"
+                            [class.is-invalid]="(detailsArrayForm.controls[i].get('herbType')?.touched
+                            || detailsArrayForm.controls[i].get('herbType')?.dirty)
+      && detailsArrayForm.controls[i].get('herbType')?.invalid">
+                <option [value]="ht.id">{{ht.name}}</option>
+              </ng-container>
+            </select>
+            <div class="invalid-feedback" *ngIf="(detailsArrayForm.controls[i].get('herbType')?.touched
+                            || detailsArrayForm.controls[i].get('herbType')?.dirty)
+      && detailsArrayForm.controls[i].get('herbType')?.hasError('required')">
+              El tipo es requerido.
+            </div>
+          </div>
+          <div class="col-4">
+            <label for="quantityInput" class="form-label">Cantidad</label>
+            <input class="form-control" formControlName="quantity" id="quantityInput"
+                   [class.is-invalid]="(detailsArrayForm.controls[i].get('quantity')?.touched
+                            || detailsArrayForm.controls[i].get('quantity')?.dirty)
+      && detailsArrayForm.controls[i].get('quantity')?.invalid">
+            <div class="invalid-feedback" *ngIf="(detailsArrayForm.controls[i].get('quantity')?.touched
+                            || detailsArrayForm.controls[i].get('quantity')?.dirty)
+      && detailsArrayForm.controls[i].get('quantity')?.hasError('required')">
+              La cantidad es requerida.
+            </div>
+            <div class="invalid-feedback" *ngIf="(detailsArrayForm.controls[i].get('quantity')?.touched
+                            || detailsArrayForm.controls[i].get('quantity')?.dirty)
+      && detailsArrayForm.controls[i].get('quantity')?.hasError('min')">
+              La cantidad no puede ser menor a 1.
+            </div>
+          </div>
+          <div class="col-4">
+            <label for="priceInput" class="form-label">Precio</label>
+            <input class="form-control" formControlName="price" id="priceInput"
+                   [class.is-invalid]="(detailsArrayForm.controls[i].get('price')?.touched
+                            || detailsArrayForm.controls[i].get('price')?.dirty)
+      && detailsArrayForm.controls[i].get('price')?.invalid">
+            <div class="invalid-feedback" *ngIf="(detailsArrayForm.controls[i].get('price')?.touched
+                            || detailsArrayForm.controls[i].get('price')?.dirty)
+      && detailsArrayForm.controls[i].get('price')?.hasError('required')">
+              El precio es requerido.
+            </div>
+          </div>
+          <div class="col-4">
+            <label for="weightInput" class="form-label">Peso</label>
+            <input class="form-control" formControlName="weight" id="weightInput"
+                   [class.is-invalid]="(detailsArrayForm.controls[i].get('weight')?.touched
+                            || detailsArrayForm.controls[i].get('weight')?.dirty)
+      && detailsArrayForm.controls[i].get('weight')?.invalid">
+          </div>
+          <div class="col-12 mt-3">
+            <button type="button" (click)="removeDetailForm(i)" class="btn btn-danger">Eliminar</button>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="col-12">
+      <button type="button" (click)="addDetailForm()" class="btn btn-primary">Agregar Detalle</button>
+      <button type="submit" class="btn btn-primary ms-3">Submit</button>
+    </div>
+  </form>
+</div>

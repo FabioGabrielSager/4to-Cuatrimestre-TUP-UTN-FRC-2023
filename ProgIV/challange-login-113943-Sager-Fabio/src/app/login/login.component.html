@@ -1,0 +1,39 @@
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
+  <div class="col-12 col-sm-7 col-md-8 col-lg-5">
+    <div class="border border-dark rounded-5 p-4">
+      <form #formulario="ngForm" (ngSubmit)="sendForm(formulario)">
+        <div class="row justify-content-center row-gap-3">
+          <div class="col-auto">
+            <h1>Login</h1>
+          </div>
+          <div class="col-12">
+            <label for="username" class="form-label">Correo electrónico:</label>
+            <input type="email" class="form-control" id="username" name="username"
+              [(ngModel)]="userCredentials.username" #inputUsername="ngModel" required email
+              pattern="\d+@frc.utn.edu.ar" placeholder="legajo@frc.utn.edu.ar">
+            <div class="error-feedback" *ngIf="inputUsername.getError('required') && inputUsername.touched">
+              Debe ingresar un email.
+            </div>
+            <div class="error-feedback" *ngIf="(inputUsername.getError('email') || inputUsername.getError('pattern'))">
+              El email debe tener un formato valido.
+            </div>
+          </div>
+          <div class="col-12">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" class="form-control" id="password" name="password"
+              [(ngModel)]="userCredentials.password" #inputPassword="ngModel" required minlength="8">
+            <div class="error-feedback" *ngIf="inputPassword.getError('required') && inputPassword.touched">
+              Debe ingresar una contraseña.
+            </div>
+            <div class="error-feedback" *ngIf="inputPassword.getError('minlength')">
+              La contraseña debe tener una longitud de 8 caracteres como minimo
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

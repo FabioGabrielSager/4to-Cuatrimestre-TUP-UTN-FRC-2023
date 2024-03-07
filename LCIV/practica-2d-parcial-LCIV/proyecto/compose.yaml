@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  client_api:
+    image: 'client_api:1.0.0'
+    build: ./client_api
+    ports:
+      - 8080:8080
+    depends_on:
+      client_api_db:
+          condition: service_healthy
+      server_api:
+          condition: service_started
+
+  client_api_db:
+    image: mysql:8
+    container_name: 'client_api_db'
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=client_admin
+      - MYSQL_PASSWORD=1234
+      - MYSQL_DATABASE=clientdb
+    ports:
+      - 5432
+    volumes:
+      - /home/shackgerc/Repositorios/LCIV/practica-2d-parcial-LCIV/proyecto/volumenes/db:/var/lib/mysql
+    healthcheck:
+          test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+          timeout: 10s
+          retries: 5
+
+  server_api:
+    image: 'server_api'
+    hostname: 'serverapi'
+    container_name: 'server_api'
+    build: ./practica-parcial-2-futbol
+    ports:
+      - 8080

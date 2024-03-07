@@ -1,0 +1,100 @@
+<div class="container mt-3">
+  <form #form="ngForm" (ngSubmit)="sendPet(form)">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="mascota.nombre"
+             #inputNombre="ngModel" required maxlength="250">
+      <div style="color: red" *ngIf="inputNombre.touched && inputNombre.getError('required')">
+        El nombre es requerido.
+      </div>
+      <div style="color: red" *ngIf="inputNombre.getError('maxlenght')">
+        El nombre no puede contener más de 250 caracteres.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="raza" class="form-label">Raza</label>
+      <input type="text" class="form-control" id="raza" name="raza" [(ngModel)]="mascota.raza"
+             #inputRaza="ngModel" required>
+      <div style="color: red" *ngIf="inputRaza.touched && inputRaza.getError('required')">
+        La raza es requerida.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Sexo</label>
+      <div class="form-check">
+        <input type="radio" value="Macho" class="form-check-input" id="sexoM" name="sexo" [(ngModel)]="mascota.sexo"
+               #inputSexoM="ngModel" required>
+        <label for="sexoM" class="form-check-label">Macho</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" value="Hembra" class="form-check-input" id="sexoH" name="sexo" [(ngModel)]="mascota.sexo"
+               #inputSexoH="ngModel" required>
+        <label for="sexoH" class="form-check-label">Hembra</label>
+      </div>
+      <div style="color: red" *ngIf="(inputSexoM.pristine || inputSexoH.pristine) &&
+      (inputSexoM.getError('required') || inputSexoH.getError('required'))">
+        El sexo es requerido.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="AnioNacimiento" class="form-label">Año de nacimiento</label>
+      <input type="number" class="form-control" id="AnioNacimiento" name="anioNacimiento"
+             [(ngModel)]="mascota.anioNacimiento"
+             #inputAnioNacimiento="ngModel" required minlength="1" maxlength="30">
+      <div style="color: red" *ngIf="inputAnioNacimiento.touched && inputAnioNacimiento.getError('required')">
+        El año de nacimiento es requerido (debe ser un número).
+      </div>
+      <div style="color: red" *ngIf="inputAnioNacimiento.touched && inputAnioNacimiento.getError('minlength')">
+        Debe ingresar al menos 1 número.
+      </div>
+      <div style="color: red" *ngIf="inputAnioNacimiento.touched && inputAnioNacimiento.getError('maxlength')">
+        No debe ingresar más de 30 números.
+      </div>
+    </div>
+    <div class="mb-3" ngModelGroup="tutor">
+      <label for="tutor" class="form-label">Tutor</label>
+      <input type="text" class="form-control" id="tutor" name="tutor"
+             [(ngModel)]="mascota.tutor.nombre"
+             #inputTutor="ngModel" required maxlength="300">
+      <div style="color: red" *ngIf="inputTutor.touched && inputTutor.getError('required')">
+        El tutor es requerido.
+      </div>
+      <div style="color: red" *ngIf="inputTutor.touched && inputTutor.getError('maxlenght')">
+        El tutor no puede tener más de 300 caracteres.
+      </div>
+        <div ngModelGroup="direccion">
+          <label for="tutor" class="form-label">Tutor</label>
+          <input type="text" class="form-control" id="calle" name="calle"
+                 [(ngModel)]="mascota.tutor.direccion.calle"
+                 #inputTutor="ngModel" required maxlength="300">
+          <div style="color: red" *ngIf="inputTutor.touched && inputTutor.getError('required')">
+            El tutor es requerido.
+          </div>
+          <div style="color: red" *ngIf="inputTutor.touched && inputTutor.getError('maxlenght')">
+            El tutor no puede tener más de 300 caracteres.
+          </div>
+          <label for="tutor" class="form-label">Tutor</label>
+          <input type="text" class="form-control" id="numero" name="numero"
+                 [(ngModel)]="mascota.tutor.direccion.numero"
+                 #inputTutor="ngModel" required maxlength="300">
+          <div style="color: red" *ngIf="inputTutor.touched && inputTutor.getError('required')">
+            El tutor es requerido.
+          </div>
+          <div style="color: red" *ngIf="inputTutor.touched && inputTutor.getError('maxlenght')">
+            El tutor no puede tener más de 300 caracteres.
+          </div>
+          <label for="tutor" class="form-label">Tutor</label>
+          <input type="text" class="form-control" id="barrio" name="barrio"
+                 [(ngModel)]="mascota.tutor.direccion.barrio"
+                 #inputTutor="ngModel" required maxlength="300">
+          <div style="color: red" *ngIf="inputTutor.touched && inputTutor.getError('required')">
+            El tutor es requerido.
+          </div>
+          <div style="color: red" *ngIf="inputTutor.touched && inputTutor.getError('maxlenght')">
+            El tutor no puede tener más de 300 caracteres.
+          </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

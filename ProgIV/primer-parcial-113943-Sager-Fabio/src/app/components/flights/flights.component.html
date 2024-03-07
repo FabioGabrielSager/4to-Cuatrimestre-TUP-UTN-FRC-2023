@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row mt-3 row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let f of flights; index as i">
+      <div class="card">
+        <img [src]="f.companyLogo" class="card-img-top" alt="Logo">
+        <div class="card-body">
+        <h5 class="card-title">{{f.cityDestination}}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{f.countryDestination}}</h6>
+          <h5 class="card-title">{{f.price | currency}}</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Take of: {{f.from | date: 'medium'}}</li>
+            <li class="list-group-item">Landing: {{f.to | date: 'medium'}}</li>
+            <li class="list-group-item"></li>
+          </ul>
+          <div class="row mt-2">
+            <button value="{{i}}" (click)="selectFlight($event)" class="btn btn-primary">Select</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Producto",
+      "description": "Descripción del Producto 1",
+      "nameEncoded": "Encoded1",
+      "price": 19.99,
+      "productType": "Producto",
+      "inventories": [
+        {
+          "id": 1,
+          "location": "Almacén A",
+          "count": 50
+        },
+        {
+          "id": 2,
+          "location": "Almacén B",
+          "count": 30
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Servicio de Consultoría",
+      "description": "Asesoramiento experto",
+      "nameEncoded": "ConsultancyService",
+      "price": 29.99,
+      "productType": "Servicio",
+      "timeFraction": "1 hora"
+    },
+    {
+      "id": 3,
+      "name": "ASDASDaSD",
+      "description": "AASDFASDFASDF",
+      "nameEncoded": "",
+      "price": 10,
+      "productType": "Servicio",
+      "timeFraction": 10,
+      "inventories": []
+    },
+    {
+      "id": 4,
+      "name": "asdfasfasdf",
+      "description": "asdfasdfasdfasdf",
+      "nameEncoded": "",
+      "price": 11,
+      "productType": "Producto",
+      "timeFraction": "",
+      "inventories": [
+        {
+          "id": 0,
+          "location": "asdfasdf"
+        }
+      ]
+    }
+  ],
+  "inventories": [
+    {
+      "name": "Almacén A",
+      "products": {
+        "name": "producto 1",
+        "stock": 100
+      }
+    },
+    {
+      "name": "Almacén B",
+      "products": {
+        "name": "producto 2",
+        "stock": 60
+      }
+    }
+  ]
+}

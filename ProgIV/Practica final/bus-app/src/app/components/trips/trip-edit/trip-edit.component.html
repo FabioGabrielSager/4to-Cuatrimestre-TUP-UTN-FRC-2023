@@ -1,0 +1,68 @@
+<div class="container vh-100 d-flex align-items-center">
+    <form [formGroup]="form" *ngIf="!showEditStopForm" class="row g-3 needs-validation">
+        <div class="col-md-6">
+            <label for="originSelect" class="form-label">Origen</label>
+            <select class="form-select" formControlName="origin" id="originSelect"
+                    [class.is-invalid]="form.controls['origin'].value == form.controls['destination'].value
+            || form.controls['origin'].invalid">
+                <option selected disabled>Seleccione origen...</option>
+                <ng-container *ngFor="let c of cities">
+                    <option [value]="c.id">{{c.name}}</option>
+                </ng-container>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="destinationSelect" class="form-label">Destino</label>
+            <select class="form-select" formControlName="destination" id="destinationSelect"
+                    [class.is-invalid]="form.controls['origin'].value == form.controls['destination'].value
+            || form.controls['destination'].invalid">
+                <option selected disabled>Seleccione destino...</option>
+                <ng-container *ngFor="let c of cities">
+                    <option [value]="c.id">{{c.name}}</option>
+                </ng-container>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="departureDateInput" class="form-label">Fecha salida</label>
+            <input type="date" class="form-control" formControlName="departureDate" id="departureDateInput">
+        </div>
+        <div class="col-md-4">
+            <label for="departureTimeInput" class="form-label">Hora salida</label>
+            <input type="time" class="form-control" formControlName="departureTime" id="departureTimeInput">
+        </div>
+        <div class="col-md-4">
+            <label for="priceInput" class="form-label">Precio</label>
+            <input type="number" class="form-control" formControlName="price" id="priceInput"
+            [class.is-invalid]="form.controls['price'].invalid">
+        </div>
+
+        <div>
+            <h3>Paradas:</h3>
+            <div ngbAccordion>
+                <div ngbAccordionItem *ngFor="let s of originalTrip.stops">
+                    <h2 ngbAccordionHeader>
+                        <button ngbAccordionButton>{{s.location}}</button>
+                    </h2>
+                    <div ngbAccordionCollapse>
+                        <div ngbAccordionBody>
+                            <ng-template>
+                                Hora: {{s.time}}hs <br>
+                                Tiempo espera: {{s.stopTime}}mins
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-secondary" routerLink="/trips/list" type="button">Cancelar</button>
+            <button class="btn btn-primary ms-3" (click)="onClickContinue()" type="button">Continuar</button>
+        </div>
+    </form>
+    <div *ngIf="showEditStopForm">
+        <ba-trip-stop-edit [editedTrip]="editedTrip" [originalTrip]="originalTrip"
+                           (onCancel)="showEditStopForm = false"></ba-trip-stop-edit>
+    </div>
+</div>
+

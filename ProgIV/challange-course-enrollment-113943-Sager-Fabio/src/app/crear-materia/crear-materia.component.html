@@ -1,0 +1,23 @@
+<h3>Crear materia</h3>
+<form #form="ngForm" (ngSubmit)="send(form)">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="materia.nombre" [(ngModel)]="materia.nombre" required maxlength="50" 
+        #InputNombre="ngModel">
+        <div style="color: red;" *ngIf="InputNombre.getError('required') && InputNombre.touched">
+            El nombre es requerido.
+        </div>
+        <div style="color: red;" *ngIf="InputNombre.getError('maxlength')">
+            El nombre no debe superar los 50 caracteres.
+        </div>
+    </div>
+    <div class="mb-3">
+      <label for="cupo" class="form-label">Cupo</label>
+      <input type="number" min="1" class="form-control" id="cupo" name="materia.cupo" 
+        [(ngModel)]="materia.cupo" required #inputCupo="ngModel">
+        <div style="color: red;" *ngIf="inputCupo.getError('required') && inputCupo.touched">
+            El cupo es requerido y debe ser numérico.
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear</button>
+</form>

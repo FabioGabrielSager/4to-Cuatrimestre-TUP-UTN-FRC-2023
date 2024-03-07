@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  car_api:
+    image: 'car_api:1.0.0'
+    build: ./car_api/
+    depends_on:
+      - car_db
+      - ex_rate_api
+    ports:
+      - 8080:8080
+
+  car_db:
+    image: postgres:15.4
+    ports:
+      - 5432
+    env_file:
+      - car_api/.env
+
+  ex_rate_api:
+    image: 'ex_rate_api:1.0.0'
+    build: ./exchangeRate_api/
+    hostname: exrateapi
+    depends_on:
+      - ex_rate_db
+    ports:
+      - 8081
+    env_file:
+      - exchangeRate_api/.env
+
+  ex_rate_db:
+    image: postgres:15.4
+    ports:
+      - 5432
+    env_file:
+      - exchangeRate_api/.env

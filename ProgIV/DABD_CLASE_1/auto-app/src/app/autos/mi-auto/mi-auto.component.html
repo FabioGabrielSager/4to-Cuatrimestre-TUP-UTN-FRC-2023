@@ -1,0 +1,43 @@
+<!-- ONE WAY BINDING -->
+<!-- Usando interpolación para acceder a variable declarada en la clase de TS -->
+<!-- <p>{{ saludo }}</p> -->
+<!-- Usando property binding para acceder a variable declarada en la clase de TS -->
+<!-- <p>
+    Este es otro mensaje <strong [innerText]="saludo">  </strong>
+</p> -->
+
+<!--  -->
+<!-- <label>Nombre:</label>
+<input type="text" [value]="nombre" (input)="actualizarValorNombre($event)"> -->
+
+<!-- En Angular los eventos se escriben entre parentesis y sin el prefijo "on" -->
+<!-- <p  (click)="mostrarAlert('Hola')">Haceme click</p>
+<p  (click)="actualizarNombre('pedro')">Actualizar nombre</p> -->
+
+<!-- TWO WAY BINDING -->
+
+<!-- Auto: Mis piezas:
+<label>Nombre:</label>
+<input type="text" [value]="nombre" (input)="actualizarValorNombre($event)">
+
+<app-pieza [nombre]="nombrePieza"
+(onAgregarPieza)="agregarPieza($event)"></app-pieza> -->
+<!-- Si las variable del componente hijo quisieramos pasarle en duro un valor, podriamos hacerlo llamando
+    directamente a la propiedad como lo hariamos normalmente con cualquier otra propiedad HTML -->
+<!-- <app-pieza nombre="Ruleman"></app-pieza> -->
+
+<!-- HACER EJERCICIOS DEL 3 AL 6 -->
+
+<!-- CLASE 1/9 -->
+<!-- <p *ngIf="mostrar">Hola clase 1/9</p> -->
+<!-- con class accedo al atributo HTML del evento, luego con .algunNombre le indico que clase quiero que se aplique.
+Luego del "=" le indico un valor booleano que según sea la clase indicada se va a aplicar o no -->
+<!-- <p [class.mostrar]="mostrar" [class.ocultar]="!mostrar">Hola clase 1/9 aplicando ngIf con clases</p>
+<button (click)="mostrarElemento()">Alternar mostrar</button> -->
+
+<!-- NGFOR -->
+<!-- <p *ngFor="let a of autos"> -->
+    <!-- Con interpolación puedo acceder a la variable del for -->
+    {{ auto  }}
+<!-- </p> -->
+<!-- <button (click)="agregar()">+</button> -->

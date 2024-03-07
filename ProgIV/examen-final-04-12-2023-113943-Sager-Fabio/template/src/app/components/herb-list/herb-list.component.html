@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <div class="mb-3 text-end">
+    <button class="btn btn-primary" routerLink="/herbs/add">Agregar yerba</button>
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Código</th>
+      <th scope="col">Pais de origen</th>
+      <th scope="col">Estado de origen</th>
+      <th scope="col">Detalles</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let h of herbs; let i = index">
+      <tr>
+        <th scope="row">{{i + 1}}</th>
+        <td>{{h.name}}</td>
+        <td><span *ngIf="h.description">{{h.description}}</span></td>
+        <td>{{h.code}}</td>
+        <td>{{h.countryOriginName}}</td>
+        <td>{{h.stateOriginName}}</td>
+        <td>
+          <ul>
+            <ng-container *ngFor="let d of h.herbDetails">
+              <li>{{d | herbDetailPipe}}</li>
+            </ng-container>
+          </ul>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>

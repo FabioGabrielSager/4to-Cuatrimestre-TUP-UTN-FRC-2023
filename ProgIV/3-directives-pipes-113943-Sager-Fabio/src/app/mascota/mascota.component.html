@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="card" style="width: 18rem;" *ngFor="let m of mascotas">
+        <div class="card-body" *ngIf="m.mostrar">
+          <h5 class="card-title">Nombre: {{ m.nombre }}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">Raza: {{ m.raza }}</h6>
+          <h6 class="card-subtitle mb-2 text-body-secondary">Sexo: {{ m.sexo }}</h6>
+          <h6 class="card-subtitle mb-2 text-body-secondary">Año nacimiento: {{ m.anioNacimiento }}</h6>
+          <h6 class="card-subtitle mb-2 text-body-secondary">Tutor: {{ m.tutor }}</h6>
+          <h6 class="card-subtitle mb-2 text-body-secondary">Edad: {{ m.anioNacimiento | age}}</h6>
+          <button class="btn btn-primary" (click)="m.incrementarEdad()">Incrementar edad</button>
+        </div>
+        <label for="mostrar">Mostrar mascota</label>
+        <input type="checkbox" name="mostar" id="mostrar" (input)="m.mostrarMascota()">
+  </div>
+</div>

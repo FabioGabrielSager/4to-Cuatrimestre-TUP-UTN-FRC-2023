@@ -1,0 +1,35 @@
+<div class="scrollable-container">
+    <form [formGroup]="form" (ngSubmit)="saveTrip()" class="row g-3 needs-validation">
+        <div class="d-grid">
+            <button class="btn btn-secondary" (click)="addStopForm()" type="button">Agregar Parada</button>
+        </div>
+        <ng-container class="scrollable-list" formArrayName="stops">
+            <ng-container [formGroupName]="i" *ngFor="let sf of stopFormArray.controls; let i = index">
+                <div>
+                    <h4>Nro parada: {{i+1}} </h4>
+                </div>
+                <div class="col-md-12">
+                    <label for="locationInput" class="form-label">Lugar</label>
+                    <input type="text" formControlName="location" class="form-control" id="locationInput">
+                </div>
+                <div class="col-md-12">
+                    <label for="timeInput" class="form-label">Hora</label>
+                    <input type="time" formControlName="time" class="form-control" id="timeInput"
+                           [class.is-invalid]="stopFormArray.controls[i].get('time')?.invalid">
+                </div>
+                <div class="col-md-12">
+                    <label for="stopTimeInput" class="form-label">Tiempo</label>
+                    <input type="number" formControlName="stopTime" class="form-control" id="stopTimeInput"
+                    [class.is-invalid]="stopFormArray.controls[i].get('stopTime')?.invalid">
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-danger" (click)="removeStopForm(i)">Eliminar</button>
+                </div>
+            </ng-container>
+        </ng-container>
+        <div class="col-12">
+            <button class="btn btn-submit" type="button" (click)="onCancel.emit()">Cancelar</button>
+            <button class="btn btn-primary" type="submit">Guardar</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,20 @@
+<div class="p-3">
+    <div class="row border boder-secondary rounded">
+        <div class="col-12 p-3 bg-secondary bg-opacity-10 border rounded-top">Sala de chat</div>
+        <div class="col-12 p-3"><h5>Conversación</h5></div>
+        <div class="col-6 mt-2 mb-2" id="chatDisplay1">
+            <p *ngFor="let m of mensajesUsuario1">{{m}}</p>
+        </div>
+        <div class="col-6 mt-2 mb-2" id="chatDisplay2">
+            <p *ngFor="let m of mensajesUsuario2">{{m}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <app-mensaje-usuario usuario="Maria" (onEnviarMensaje)="mensajesUsuario1.push($event)"></app-mensaje-usuario>
+        </div>
+        <div class="col-6">
+            <app-mensaje-usuario usuario="Pepe" (onEnviarMensaje)="mensajesUsuario2.push($event)"></app-mensaje-usuario>
+        </div>
+    </div>
+</div>

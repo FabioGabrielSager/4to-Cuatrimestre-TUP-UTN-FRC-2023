@@ -1,0 +1,147 @@
+{
+  "films": [
+    {
+      "id": 1,
+      "name": "Juegos del hambre",
+      "type": "Movie",
+      "actors": [
+        {
+          "id": 0,
+          "name": "Jeniffer",
+          "lastName": "Lawrence"
+        },
+        {
+          "id": 0,
+          "name": "Alexander ",
+          "lastName": "Ludwig"
+        }
+      ],
+      "gnere": "Ciencia ficción",
+      "lenght": "140 mins"
+    },
+    {
+      "id": 2,
+      "name": "Pacific RIM",
+      "type": "Movie",
+      "actors": [],
+      "gnere": "Ciencia ficción",
+      "lenght": "200 min"
+    },
+    {
+      "id": 3,
+      "name": "Los simpsons",
+      "type": "Serie",
+      "actors": [],
+      "gnere": "Comedia",
+      "chapters": [
+        {
+          "id": 0,
+          "name": "Homer the Whopper",
+          "duration": "20 min"
+        },
+        {
+          "id": 1,
+          "name": "The Devil Wears Nada",
+          "duration": "23"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "12 horas para sobrevivir",
+      "type": "Movie",
+      "actors": [],
+      "gnere": "Terror",
+      "lenght": "220 min"
+    },
+    {
+      "id": 5,
+      "name": "El padrino",
+      "type": "Movie",
+      "actors": [
+        {
+          "id": 0,
+          "name": "Marlon",
+          "lastName": "Brandon"
+        }
+      ],
+      "gnere": "Thriller",
+      "country": "Estados Unidos",
+      "lenght": "300 min"
+    }
+  ],
+  "continents": [
+    {
+      "id": 1,
+      "name": "América"
+    },
+    {
+      "id": 2,
+      "name": "Europa"
+    },
+    {
+      "id": 3,
+      "name": "Asia"
+    },
+    {
+      "id": 4,
+      "name": "África"
+    },
+    {
+      "id": 5,
+      "name": "Oceanía"
+    }
+  ],
+  "countries": [
+    {
+      "id": 1,
+      "continent_id": 1,
+      "name": "Estados Unidos"
+    },
+    {
+      "id": 2,
+      "continent_id": 1,
+      "name": "Canadá"
+    },
+    {
+      "id": 3,
+      "continent_id": 2,
+      "name": "Alemania"
+    },
+    {
+      "id": 4,
+      "continent_id": 2,
+      "name": "Francia"
+    },
+    {
+      "id": 5,
+      "continent_id": 3,
+      "name": "China"
+    },
+    {
+      "id": 6,
+      "continent_id": 3,
+      "name": "Japón"
+    },
+    {
+      "id": 7,
+      "continent_id": 4,
+      "name": "Nigeria"
+    },
+    {
+      "id": 8,
+      "continent_id": 4,
+      "name": "Sudáfrica"
+    },
+    {
+      "id": 9,
+      "continent_id": 5,
+      "name": "Australia"
+    },
+    {
+      "id": 10,
+      "continent_id": 5,
+      "name": "Nueva Zelanda"
+    }
+  ]
+}

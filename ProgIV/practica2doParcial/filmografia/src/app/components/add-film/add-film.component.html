@@ -1,0 +1,140 @@
+<div class="container mt-5">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="nameInput" class="form-label">Nombre</label>
+      <input type="text"
+             [class.is-invalid]="form.controls['name'].invalid
+                 && (form.controls['name'].touched
+                 || form.controls['name'].dirty)"
+             formControlName="name" id="nameInput" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="continent" class="form-label">Continente</label>
+      <select [class.is-invalid]="form.controls['continent'].invalid
+                 && (form.controls['continent'].touched
+                 || form.controls['continent'].dirty)"
+              id="continent" formControlName="continent" class="form-select">
+        <ng-container *ngFor="let continent of continents">
+          <option value="{{continent.id}}">{{continent.name}}</option>
+        </ng-container>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="continent" class="form-label">Continente</label>
+      <select [class.is-invalid]="form.controls['continent'].invalid
+                 && (form.controls['continent'].touched
+                 || form.controls['continent'].dirty)"
+              id="country" formControlName="country" class="form-select">
+        <ng-container *ngFor="let country of countries">
+          <option value="{{country.name}}">{{country.name}}</option>
+        </ng-container>
+      </select>
+    </div>
+
+    <label class="form-label">Tipo</label>
+    <div class="mb-3">
+      <input type="radio"
+             [class.is-invalid]="form.controls['type'].invalid
+                 && (form.controls['type'].touched
+                 || form.controls['type'].dirty)"
+             formControlName="type" value="Movie" id="typeMovie" name="type" class="form-check-input">
+      <label for="typeMovie" class="form-check-label">Pelicula</label>
+    </div>
+
+    <div class="mb-3">
+      <input type="radio"
+             [class.is-invalid]="form.controls['type'].invalid
+                 && (form.controls['type'].touched
+                 || form.controls['type'].dirty)"
+             id="typeSerie" value="Serie" formControlName="type" name="type" class="form-check-input">
+      <label for="typeSerie" class="form-check-label">Serie</label>
+    </div>
+
+    <div class="mb-3">
+      <label for="gnere" class="form-label">Genero</label>
+      <input type="text"
+             [class.is-invalid]="form.controls['gnere'].invalid
+                 && (form.controls['gnere'].touched
+                 || form.controls['gnere'].dirty)"
+             formControlName="gnere" id="gnere" name="gnere" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <h4>Actores</h4>
+      <div class="row row-cols-lg-12 g-3 align-items-center">
+        <ng-container formArrayName="actors">
+          <ng-container [formGroupName]="i" *ngFor="let actor of actorsFormArray.controls; let i = index">
+            <div class="col-12">
+              <input type="text" id="actorName" formControlName="actorName"
+                     name="actorName" placeholder="Nombre" class="form-control">
+            </div>
+            <div class="col-12">
+              <input type="text" id="actorLastName" name="actorLastName"  formControlName="actorLastName"
+                     placeholder="Apellido" class="form-control">
+            </div>
+            <div class="col-12">
+              <button class="btn btn-danger" (click)="deleteActorForm(i)">Eliminar</button>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    <button type="button" class="btn btn-primary mt-3" (click)="addActorForm()">Agregar actor</button>
+    </div>
+
+    <h4 *ngIf="form.get('type')?.value === 'Serie'">Capitulos</h4>
+    <ng-container formArrayName="details">
+      <ng-container [formGroupName]="i" *ngFor="let detail of detailsFormArray.controls; let i = index">
+        <div class="mb-3" *ngIf="form.get('type')?.value === 'Movie'">
+          <label for="lenght" class="form-label">Duración</label>
+          <input type="text" formControlName="lenght" id="lenght" name="lenght" class="form-control">
+        </div>
+      <div *ngIf="form.get('type')?.value === 'Serie'">
+        <div class="mb-3">
+          <label for="chapterName" class="form-label">Nombre</label>
+          <input type="text"
+                 [class.is-invalid]="detailsFormArray.controls[i].get('chapterName')?.invalid
+                 && (detailsFormArray.controls[i].get('chapterName')?.touched
+                 || detailsFormArray.controls[i].get('chapterName')?.dirty)"
+                 formControlName="chapterName" id="chapterName" name="chapterName" class="form-control">
+          <div class="invalid-feedback" *ngIf="
+          detailsFormArray.controls[i].get('chapterName')?.getError('required')
+                 && (detailsFormArray.controls[i].get('chapterName')?.touched
+                 || detailsFormArray.controls[i].get('chapterName')?.dirty)">El nombre del capitulo es requerido
+          </div>
+          <div class="invalid-feedback" *ngIf="
+          detailsFormArray.controls[i].get('chapterName')?.getError('minlength')
+                 && (detailsFormArray.controls[i].get('chapterName')?.touched
+                 || detailsFormArray.controls[i].get('chapterName')?.dirty)">El nombre del capitulo es requerido
+            no puede tener menos de 5 caracteres
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="chapterDuration" class="form-label">Duración</label>
+          <input type="text"
+                 [class.is-invalid]="detailsFormArray.controls[i].get('chapterDuration')?.invalid
+                 && (detailsFormArray.controls[i].get('chapterDuration')?.touched
+                 || detailsFormArray.controls[i].get('chapterDuration')?.dirty)"
+                 formControlName="chapterDuration" id="chapterDuration" name="chapterDuration" class="form-control">
+          <div class="invalid-feedback" *ngIf="
+          detailsFormArray.controls[i].get('chapterDuration')?.getError('required')
+                 && (detailsFormArray.controls[i].get('chapterDuration')?.touched
+                 || detailsFormArray.controls[i].get('chapterDuration')?.dirty)">La duración del capitulo es requerida
+          </div>
+          <div class="invalid-feedback" *ngIf="
+          detailsFormArray.controls[i].get('chapterDuration')?.getError('min')
+                 && (detailsFormArray.controls[i].get('chapterDuration')?.touched
+                 || detailsFormArray.controls[i].get('chapterDuration')?.dirty)">La duración del capitulo
+            no puede ser menor a 1 minuto
+          </div>
+        </div>
+        <button class="btn btn-danger" (click)="deleteChapterForm(i)">Eliminar</button>
+      </div>
+      </ng-container>
+    </ng-container>
+    <button type="button" class="btn btn-primary mt-3" (click)="addChapterForm()"
+            *ngIf="form.get('type')?.value === 'Serie'">Agregar capitulo</button>
+
+    <button type="submit" class="btn btn-primary mt-3">Registrar</button>
+  </form>
+</div>

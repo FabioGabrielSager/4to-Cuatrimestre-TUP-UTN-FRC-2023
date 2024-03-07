@@ -1,0 +1,2 @@
+<app-login *ngIf="displayLogin" (onLogin)="displayLogin=!displayLogin"></app-login>
+<app-home *ngIf="!displayLogin" (onLogOut)="displayLogin=!displayLogin"></app-home>

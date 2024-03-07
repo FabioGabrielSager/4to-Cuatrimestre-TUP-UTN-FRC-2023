@@ -1,0 +1,204 @@
+<!--<div class="container">-->
+<!--  <div class="card my-3">-->
+<!--    <h4>Booking detail</h4>-->
+<!--    <div class="row my-3">-->
+<!--      <div class="col-6 separator">-->
+<!--        <h6>Your flight</h6>-->
+<!--        <div class="row">-->
+<!--          <div class="col-5">-->
+<!--            <img [src]="flight?.companyLogo" alt="CompanyLogo" />-->
+<!--          </div>-->
+<!--          <div class="col-7 d-flex">-->
+<!--            <ul class="list-group list-group-flush w-100">-->
+<!--              <li>-->
+<!--                <p><strong>Chicago to New York</strong></p>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <p><span>2hs 40mins</span></p>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <i class="bi bi-airplane"></i>-->
+<!--                <span>-->
+<!--                            <p><strong>18:30</strong></p>-->
+<!--                            <p class="secondary">Chicago</p>-->
+<!--                        </span>-->
+<!--                <i class="bi bi-airplane rotate"></i>-->
+<!--                <span>-->
+<!--                            <p><strong>21:10</strong></p>-->
+<!--                            <p class="secondary">New York</p>-->
+<!--                        </span>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="col-6">-->
+<!--        <h6>Your room</h6>-->
+<!--        <div class="row">-->
+<!--          <div class="col-5">-->
+<!--            <img src="..." alt="..." />-->
+<!--          </div>-->
+<!--          <div class="col-7">-->
+<!--            <p><strong>AMERICAN</strong></p>-->
+<!--            <p><strong>Single Room</strong></p>-->
+<!--            <div class="d-flex">-->
+<!--              <div class="amenity">-->
+<!--                <i class="bi bi-tv"></i>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<div class="container">
+  <form #form="ngForm" (ngSubmit)="sendBoking(form)">
+    <div class="row gy-2 gx-3 align-items-center p-3">
+      <h3>Your information here</h3>
+
+    <div class="col-3">
+      <label class="form-label" for="fistName">First Name</label>
+      <input type="text" class="form-control" id="fistName" name="fistName" [(ngModel)]="b.Nombre" #inputFName="ngModel"
+             required maxlength="50">
+      <div style="color: red" *ngIf="inputFName.getError('required') && inputFName.touched">
+        El nombre es requerido.
+      </div>
+      <div style="color: red" *ngIf="inputFName.getError('maxlenght') && inputFName.dirty">
+        El nombre no puede tener más de 50 caracteres.
+      </div>
+    </div>
+    <div class="col-3">
+      <label class="form-label" for="lastName">Last Name</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="b.Apellido" #inputLName="ngModel"
+               required maxlength="50">
+      </div>
+      <div style="color: red" *ngIf="inputLName.getError('required') && inputLName.touched">
+        El apellido es requerido.
+      </div>
+      <div style="color: red" *ngIf="inputLName.getError('maxlenght') && inputLName.dirty">
+        El apellido no puede tener más de 50 caracteres.
+      </div>
+    </div>
+    <div class="col-3">
+      <label class="form-label" for="idType">Identification type</label>
+      <select class="form-select" id="idType" [(ngModel)]="b.TipoDocumento" #selectTID="ngModel"
+              required>
+        <option selected disabled>Choose...</option>
+        <option value="1">DNI</option>
+        <option value="2">Passport</option>
+      </select>
+      <div style="color: red" *ngIf="selectTID.getError('required') && selectTID.touched">
+        El tipo documento es requerido.
+      </div>
+    </div>
+    <div class="col-3">
+      <label class="form-label" for="idNumber">Identification Number</label>
+      <div class="input-group">
+        <input type="number" class="form-control" id="idNumber" name="idNumber" [(ngModel)]="b.NumeroDocumento" #inputNroDoc="ngModel"
+               required>
+      </div>
+      <div style="color: red" *ngIf="inputNroDoc.getError('required') && inputNroDoc.touched">
+        El tipo documento es requerido (debe ser númerico).
+      </div>
+    </div>
+    <div class="col-6">
+      <label class="form-label" for="address">Address</label>
+      <input type="text" class="form-control" id="address" name="address" [(ngModel)]="b.Direccion" #inputAddress="ngModel"
+             required maxlength="500">
+    </div>
+      <div style="color: red" *ngIf="inputAddress.getError('required') && inputAddress.touched">
+        La dirección es requerido.
+      </div>
+      <div style="color: red" *ngIf="inputAddress.getError('maxlenght') && inputAddress.dirty">
+        La dirección no puede tener más de 500 caracteres.
+      </div>
+    <div class="col-3">
+      <label class="form-label" for="state">State</label>
+      <input type="text" class="form-control" id="state" name="state" [(ngModel)]="b.Pais" #inputState="ngModel"
+             required maxlength="100">
+      <div style="color: red" *ngIf="inputState.getError('required') && inputState.touched">
+        El Pais es requerido.
+      </div>
+      <div style="color: red" *ngIf="inputState.getError('maxlenght') && inputState.dirty">
+        El Pais no puede tener más de 100 caracteres.
+      </div>
+    </div>
+    <div class="col-3">
+      <label class="form-label" for="city">City</label>
+      <input type="text" class="form-control" id="city" name="city" [(ngModel)]="b.Ciudad" #inputCity="ngModel"
+             required maxlength="100">
+      <div style="color: red" *ngIf="inputCity.getError('required') && inputCity.touched">
+        La ciudad es requerido.
+      </div>
+      <div style="color: red" *ngIf="inputCity.getError('maxlenght') && inputCity.dirty">
+        La ciudad no puede tener más de 100 caracteres.
+      </div>
+    </div>
+  </div>
+    <div class="row gy-2 gx-3 align-items-center mt-5 p-3">
+      <h3>Your card information</h3>
+      <div class="col-12">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="payType" id="creditCard">
+          <label class="form-check-label" for="creditCard">
+            Credit Card
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="payType" id="debitCard">
+          <label class="form-check-label" for="debitCard">
+            Debit Card
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="payType" id="paypal">
+          <label class="form-check-label" for="paypal">
+            Paypal
+          </label>
+        </div>
+      </div>
+      <div class="col-6">
+        <label class="form-label" for="nameOnCard">Name on card</label>
+        <input type="text" class="form-control" id="nameOnCard" name="nameOnCard" [(ngModel)]="b.NombreTitular" #inputNameOnCard="ngModel"
+               required maxlength="100">
+        <div style="color: red" *ngIf="inputNameOnCard.getError('required') && inputNameOnCard.touched">
+          El nombre de la tarjeta es requerido.
+        </div>
+        <div style="color: red" *ngIf="inputNameOnCard.getError('maxlenght') && inputNameOnCard.dirty">
+          El nombre de la tarjeta es no puede tener más de 12 caracteres.
+        </div>
+      </div>
+      <div class="col-6">
+        <label class="form-label" for="cardNumber">Credit Card Number</label>
+        <input type="text" class="form-control" id="cardNumber">
+      </div>
+      <div class="col-3">
+        <label class="form-label" for="Expiration">Expiration</label>
+        <input type="text" class="form-control" id="Expiration" name="Expiration" [(ngModel)]="b.Expiracion" #inputExp="ngModel"
+               required maxlength="100">
+        <div style="color: red" *ngIf="inputExp.getError('required') && inputExp.touched">
+          La expiración es requerido.
+        </div>
+        <div style="color: red" *ngIf="inputExp.getError('maxlenght') && inputExp.dirty">
+          La expiración no puede tener más de 4 caracteres.
+        </div>
+      </div>
+      <div class="col-3">
+        <label class="form-label" for="CVV">CVV</label>
+        <input type="password" class="form-control" id="CVV" name="CVV" [(ngModel)]="b.CCV" #inputCVV="ngModel"
+               required maxlength="100">
+        <div style="color: red" *ngIf="inputCVV.getError('required') && inputCVV.touched">
+          El cvv es requerido.
+        </div>
+        <div style="color: red" *ngIf="inputCVV.getError('maxlenght') && inputCVV.dirty">
+          El cvv no puede tener más de 3 caracteres.
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+

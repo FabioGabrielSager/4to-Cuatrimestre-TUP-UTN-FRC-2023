@@ -1,0 +1,22 @@
+<div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Genero</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let film of films; let i = index">
+                <tr>
+                    <th scope="row">{{i}}</th>
+                    <td>{{film.name}}</td>
+                    <td>{{film.type}}</td>
+                    <td>{{film.gnere}}</td>
+                </tr>
+            </ng-container>
+            </tbody>
+        </table>
+</div>

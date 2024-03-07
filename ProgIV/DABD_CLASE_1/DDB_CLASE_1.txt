@@ -1,0 +1,5 @@
+En angular, en index.html solo llama a un componente raiz de angular, que lo podemos pensar como una función main de una aplicación C# o Java. Luego, la función de este componente es la de llamar los demas componentes que nosotros vayamos a crear.
+
+Clase que viene:
+  - Terminamos de ver bien componentes.
+  - Como pasar información entre componentes.

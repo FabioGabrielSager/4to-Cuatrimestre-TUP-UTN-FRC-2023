@@ -1,0 +1,54 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="container mt-4">
+    <h1>Agregar factura</h1>
+    <div class="row g-3 mt-3">
+        <div class="col-12">
+            <label for="clientInput" class="form-label">Cliente</label>
+            <input type="text" name="client" #client="ngModel" [(ngModel)]="newInvoice.clientName" id="clientInput"
+                   class="form-control" required minlength="10" efMinInvoicesByClient
+                   [class.is-invalid]="(client.touched || client.dirty) && client.invalid">
+            <div class="invalid-feedback"
+                 *ngIf="(client.touched || client.dirty) && client.getError('required')">
+                El nombre del cliente es requerido.
+            </div>
+            <div class="invalid-feedback"
+                 *ngIf="(client.touched || client.dirty) && client.getError('minlength')">
+                El nombre del cliente debe tener como minimo 10 caracteres.
+            </div>
+            <div class="invalid-feedback"
+                 *ngIf="(client.touched || client.dirty) && client.hasError('exceedsTheMinimum')">
+                El cliente {{client.value}} ya tiene 2 facturas, no puede tener más.
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <label for="dateInput" class="form-label">Fecha</label>
+            <input type="date" name="date" #dateI="ngModel" [(ngModel)]="newInvoice.createdDate" id="dateInput"
+                   class="form-control" required efDateValidator
+                   [class.is-invalid]="dateI.touched && dateI.invalid">
+            <div class="invalid-feedback"
+                 *ngIf="dateI.touched && dateI.getError('required')">
+                La fecha es requerida.
+            </div>
+            <div class="invalid-feedback"
+                 *ngIf="(dateI.touched || dateI.dirty) && dateI.getError('isInvalid')">
+                La fecha no puede ser la de hoy.
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <label for="typeInput" class="form-label">Tipo</label>
+            <select name="type" #type="ngModel" [(ngModel)]="newInvoice.tpe" id="typeInput"
+                    class="form-select" required
+                    [class.is-invalid]="type.touched && type.invalid">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+            </select>
+            <div class="invalid-feedback"
+                 *ngIf="type.touched && type.getError('required')">
+                El tipo es requerido.
+            </div>
+        </div>
+        <div class="col-12 text-md-end mb-3">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+</form>
